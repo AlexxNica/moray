@@ -1,28 +1,33 @@
 {
         "port": 2020,
         "bunyan": {
-                "level": "info",
+                "level": "trace",
                 "syslog": {
                         "facility": "local0",
                         "type": "udp"
                 }
         },
         "manatee": {
-                "path": "/manatee/sdc/election",
-                "pg": {
-                        "connectTimeout": 2000,
-                        "maxConnections": 5,
-                        "maxIdleTime": 30000,
-                        "checkInterval": 120000
-                },
+            "manatee": {
+                "path": "/manatee/2.moray.orbit.example.com",
                 "zk": {
                         "connectTimeout": 2000,
-                        "servers": [ {
-                                "host": "10.2.201.7",
-                                "port": 2181
-                        } ],
+                        "connStr": "10.77.77.78:2181,10.77.77.79:2181,10.77.77.80:2181",
+                        "opts": {
+                            "sessionTimeout": 60000,
+                            "spinDelay": 1000,
+                            "retries": 2
+                        },
                         "timeout": 10000
                 }
+            },
+            "pg": {
+                    "user": "moray",
+                    "connectTimeout": 2000,
+                    "maxConnections": 5,
+                    "maxIdleTime": 30000,
+                    "checkInterval": 120000
+            }
         },
         "cache": {
                 "size": 1000,
